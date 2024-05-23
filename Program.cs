@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
 using ArchitectureArchiveBE.Data;
+using ArchitectureArchiveBE.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseHttpsRedirection();
+UserAPI.Map(app);
+BuildingAPI.Map(app);
+StyleAPI.Map(app);
+TagAPI.Map(app);
 
 app.Run();

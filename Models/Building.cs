@@ -9,8 +9,10 @@
         public string Description { get; set; }
         public bool IsRegistered { get; set; }
         public int UserId { get; set; }
-        public int StyleId { get; set; }
+        public int ? StyleId { get; set; }
         public string ImageURL { get; set; }
+        public Style Style { get; set; }
+        public User User { get; set; }
         public ICollection<Tag> Tags { get; set; }
     }
 }
