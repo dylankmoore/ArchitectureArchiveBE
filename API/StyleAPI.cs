@@ -9,7 +9,7 @@ namespace ArchitectureArchiveBE.API
         public static void Map(WebApplication app)
         {
             // ADD STYLE TO BUILDING
-            app.MapPost("/buildings/{buildingId}/style/{styleId}", (ArchitectureArchiveBEDbContext db, int buildingId, int styleId) =>
+            app.MapPost("/buildings/{buildingId}/styles/{styleId}", (ArchitectureArchiveBEDbContext db, int buildingId, int styleId) =>
             {
                 var building = db.Buildings.FirstOrDefault(b => b.BuildingId == buildingId);
                 if (building == null)
