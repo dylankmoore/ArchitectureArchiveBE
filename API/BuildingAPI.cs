@@ -46,6 +46,7 @@ namespace ArchitectureArchiveBE.API
                         b.Location,
                         b.YearBuilt,
                         Style = b.Style.Name,
+                        b.StyleId,
                         b.Description,
                         b.UserId,
                         IsRegistered = b.IsRegistered ? "Registered" : "Not Registered",
