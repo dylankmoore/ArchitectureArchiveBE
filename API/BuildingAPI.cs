@@ -45,12 +45,12 @@ namespace ArchitectureArchiveBE.API
                         b.Name,
                         b.Location,
                         b.YearBuilt,
-                        Style = b.Style.Name,
-                        b.StyleId,
                         b.Description,
-                        b.UserId,
-                        b.ImageURL,
                         IsRegistered = b.IsRegistered ? "Registered" : "Not Registered",
+                        b.UserId,
+                        b.StyleId,
+                        Style = b.Style.Name,
+                        b.ImageURL,
                         Tags = b.Tags.Select(t => t.Name).ToList(),
                     })
                     .FirstOrDefault();
