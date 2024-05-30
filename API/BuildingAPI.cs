@@ -66,7 +66,7 @@ namespace ArchitectureArchiveBE.API
             // CREATE A BUILDING
             app.MapPost("/buildings", (ArchitectureArchiveBEDbContext db, BuildingDTO buildingDto) =>
             {
-                // verify that the user exists
+                // verify that user exists
                 var user = db.Users.FirstOrDefault(u => u.Id == buildingDto.UserId);
                 if (user == null)
                 {
