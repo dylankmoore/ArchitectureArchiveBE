@@ -49,6 +49,7 @@ namespace ArchitectureArchiveBE.API
                         b.StyleId,
                         b.Description,
                         b.UserId,
+                        b.ImageURL,
                         IsRegistered = b.IsRegistered ? "Registered" : "Not Registered",
                         Tags = b.Tags.Select(t => t.Name).ToList(),
                     })
