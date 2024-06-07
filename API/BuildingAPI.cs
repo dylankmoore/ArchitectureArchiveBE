@@ -64,16 +64,16 @@ namespace ArchitectureArchiveBE.API
             });
 
             // CREATE A BUILDING
-            app.MapPost("/buildings", (ArchitectureArchiveBEDbContext db, BuildingDTO buildingDto) =>
+            app.MapPost("/buildings/new", (ArchitectureArchiveBEDbContext db, BuildingDTO buildingDto) =>
             {
-                // verify that user exists
+                // erify that the user exists
                 var user = db.Users.FirstOrDefault(u => u.Id == buildingDto.UserId);
                 if (user == null)
                 {
                     return Results.NotFound("User not found.");
                 }
 
-                // create a new building and associate it with the user & style
+                // create a new building and associate it with the user
                 var newBuilding = new Building
                 {
                     Name = buildingDto.Name,
@@ -81,13 +81,46 @@ namespace ArchitectureArchiveBE.API
                     YearBuilt = buildingDto.YearBuilt,
                     Description = buildingDto.Description,
                     IsRegistered = buildingDto.IsRegistered,
-                    UserId = buildingDto.UserId,
-                    StyleId = buildingDto.StyleId,
                     ImageURL = buildingDto.ImageURL,
+                    UserId = buildingDto.UserId,
+                    Tags = new List<Tag>()
                 };
 
-                // add the building to the database & save changes
+                // add the building to the database
                 db.Buildings.Add(newBuilding);
+                db.SaveChanges();
+
+                // add tags to the building
+                if (buildingDto.TagIds != null && buildingDto.TagIds.Count > 0)
+                {
+                    foreach (var tagId in buildingDto.TagIds)
+                    {
+                        var tag = db.Tags.Find(tagId);
+                        if (tag != null)
+                        {
+                            newBuilding.Tags.Add(tag);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Tag with ID {tagId} not found.");
+                        }
+                    }
+                }
+
+                // Add style to the building if provided
+                if (buildingDto.StyleId != null)
+                {
+                    var style = db.Styles.Find(buildingDto.StyleId);
+                    if (style != null)
+                    {
+                        newBuilding.Style = style;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Style with ID {buildingDto.StyleId} not found.");
+                    }
+                }
+
                 db.SaveChanges();
 
                 return Results.Created($"/buildings/{newBuilding.BuildingId}", newBuilding);
@@ -107,7 +140,6 @@ namespace ArchitectureArchiveBE.API
                 building.YearBuilt = buildingDto.YearBuilt ?? building.YearBuilt;
                 building.Description = buildingDto.Description ?? building.Description;
                 building.IsRegistered = buildingDto.IsRegistered != false ? buildingDto.IsRegistered : building.IsRegistered;
-                building.StyleId = buildingDto.StyleId != null ? buildingDto.StyleId : building.StyleId;
                 building.ImageURL = buildingDto.ImageURL ?? building.ImageURL;
 
                 db.SaveChanges();

@@ -10,14 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
         policy.WithOrigins("http://localhost:3000", "http://localhost:5003")
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader();
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
 
@@ -31,17 +31,6 @@ builder.Services.AddNpgsql<ArchitectureArchiveBEDbContext>(builder.Configuration
 builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-});
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins("http://localhost:3000")
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
 });
 
 var app = builder.Build();
