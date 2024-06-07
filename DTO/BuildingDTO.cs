@@ -8,7 +8,8 @@
         public string Description { get; set; }
         public bool IsRegistered { get; set; }
         public int UserId { get; set; }
-        public int? StyleId { get; set; }
         public string ImageURL { get; set; }
+        public int? StyleId { get; set; }
+        public List<int> TagIds { get; set; } = new List<int>();
     }
 }
