@@ -107,7 +107,7 @@ namespace ArchitectureArchiveBE.API
                     }
                 }
 
-                // Add style to the building if provided
+                // add style to the building if provided
                 if (buildingDto.StyleId != null)
                 {
                     var style = db.Styles.Find(buildingDto.StyleId);
@@ -129,21 +129,66 @@ namespace ArchitectureArchiveBE.API
             // UPDATE BUILDING
             app.MapPut("/buildings/{buildingId}", (ArchitectureArchiveBEDbContext db, int buildingId, BuildingDTO buildingDto) =>
             {
-                var building = db.Buildings.Find(buildingId);
+                var building = db.Buildings.Include(b => b.Tags).FirstOrDefault(b => b.BuildingId == buildingId);
                 if (building == null)
                 {
                     return Results.NotFound("Building not found.");
                 }
 
+                // verify that the user exists
+                var user = db.Users.FirstOrDefault(u => u.Id == buildingDto.UserId);
+                if (user == null)
+                {
+                    return Results.NotFound("User not found.");
+                }
+
+                // update building properties
                 building.Name = buildingDto.Name ?? building.Name;
                 building.Location = buildingDto.Location ?? building.Location;
                 building.YearBuilt = buildingDto.YearBuilt ?? building.YearBuilt;
                 building.Description = buildingDto.Description ?? building.Description;
                 building.IsRegistered = buildingDto.IsRegistered != false ? buildingDto.IsRegistered : building.IsRegistered;
                 building.ImageURL = buildingDto.ImageURL ?? building.ImageURL;
+                building.UserId = buildingDto.UserId;
+
+                // update tags
+                building.Tags.Clear();
+                if (buildingDto.TagIds != null && buildingDto.TagIds.Count > 0)
+                {
+                    foreach (var tagId in buildingDto.TagIds)
+                    {
+                        var tag = db.Tags.Find(tagId);
+                        if (tag != null)
+                        {
+                            building.Tags.Add(tag);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Tag with ID {tagId} not found.");
+                        }
+                    }
+                }
+
+                // update style
+                if (buildingDto.StyleId != null)
+                {
+                    var style = db.Styles.Find(buildingDto.StyleId);
+                    if (style != null)
+                    {
+                        building.Style = style;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Style with ID {buildingDto.StyleId} not found.");
+                    }
+                }
+                else
+                {
+                    building.Style = null;
+                }
 
                 db.SaveChanges();
-                return Results.Ok(new { Message = "Building updated successfully." });
+                return Results.Ok(new { Message = "Building updated successfully.", Building = building });
             });
 
             // DELETE BUILDINGS
