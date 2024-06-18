@@ -3,6 +3,7 @@ using System;
 using ArchitectureArchiveBE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ArchitectureArchiveBE.Migrations
 {
     [DbContext(typeof(ArchitectureArchiveBEDbContext))]
-    partial class ArchitectureArchiveBEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240613030024_PhotoUpdate")]
+    partial class PhotoUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -799,7 +801,7 @@ namespace ArchitectureArchiveBE.Migrations
                         new
                         {
                             TagId = 4,
-                            Name = "Government Building"
+                            Name = "Art Installation"
                         },
                         new
                         {
@@ -835,31 +837,6 @@ namespace ArchitectureArchiveBE.Migrations
                         {
                             TagId = 11,
                             Name = "Innovation"
-                        },
-                        new
-                        {
-                            TagId = 12,
-                            Name = "Closed to Public"
-                        },
-                        new
-                        {
-                            TagId = 13,
-                            Name = "Religious Site"
-                        },
-                        new
-                        {
-                            TagId = 14,
-                            Name = "Public Space"
-                        },
-                        new
-                        {
-                            TagId = 15,
-                            Name = "Skyscraper"
-                        },
-                        new
-                        {
-                            TagId = 16,
-                            Name = "Ancient Structure"
                         });
                 });
 
