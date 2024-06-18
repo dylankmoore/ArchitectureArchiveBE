@@ -2,6 +2,7 @@
 using ArchitectureArchiveBE.Data;
 using ArchitectureArchiveBE.Models;
 using ArchitectureArchiveBE.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ArchitectureArchiveBE.API
 {
@@ -204,6 +205,40 @@ namespace ArchitectureArchiveBE.API
                 db.SaveChanges();
                 return Results.Ok(new { Message = "Building deleted successfully." });
             });
+
+            // SEARCH BUILDINGS
+            app.MapGet("/search", (ArchitectureArchiveBEDbContext db, string query) =>
+            {
+                query = query.ToLower();
+
+                var searchResults = db.Buildings
+                    .Where(b => EF.Functions.Like(b.Name.ToLower(), $"%{query}%") ||
+                                EF.Functions.Like(b.Location.ToLower(), $"%{query}%") ||
+                                EF.Functions.Like(b.YearBuilt.ToLower(), $"%{query}%") ||
+                                EF.Functions.Like(b.Style.Name.ToLower(), $"%{query}%") ||
+                                b.Tags.Any(t => EF.Functions.Like(t.Name.ToLower(), $"%{query}%")))
+                    .Include(b => b.Style)
+                    .Include(b => b.Tags)
+                    .Include(b => b.User)
+                    .Select(b => new
+                    {
+                        b.BuildingId,
+                        b.Name,
+                        b.Location,
+                        b.YearBuilt,
+                        b.Description,
+                        b.IsRegistered,
+                        b.UserId,
+                        b.StyleId,
+                        Style = b.Style.Name,
+                        b.ImageURL,
+                        Tags = b.Tags.Select(t => t.Name).ToList(),
+                    })
+                    .ToList();
+
+                return Results.Ok(searchResults);
+            });
+
 
         }
     }
