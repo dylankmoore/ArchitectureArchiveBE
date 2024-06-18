@@ -16,7 +16,7 @@ Architecture Archive is your gateway to exploring the depths of our architectura
 - Edit building information such as name, image, location, description, its' registration status, etc.
 - Delete buildings
 
-## Planning for Y2PLAY
+## Planning for Architecture Archive
 - [ERD](https://dbdiagram.io/d/ARCHIVE-663992099e85a46d5527466f)
 
   ![AAERD](https://github.com/dylankmoore/ArchitectureArchiveBE/assets/134669892/d34923dc-5f6b-49cd-b983-f591d53e9be0)
