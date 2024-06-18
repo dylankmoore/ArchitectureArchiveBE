@@ -3,6 +3,7 @@ using System;
 using ArchitectureArchiveBE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ArchitectureArchiveBE.Migrations
 {
     [DbContext(typeof(ArchitectureArchiveBEDbContext))]
-    partial class ArchitectureArchiveBEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240613022131_BuildingUpdate")]
+    partial class BuildingUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -552,7 +554,7 @@ namespace ArchitectureArchiveBE.Migrations
                         {
                             BuildingId = 41,
                             Description = "The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the strait connecting San Francisco Bay and the Pacific Ocean. Completed in 1937, the bridge was the longest and tallest suspension bridge in the world at the time. It has undergone numerous maintenance and retrofit projects to ensure its safety and longevity, including seismic upgrades to withstand earthquakes. The bridge is an internationally recognized symbol of San Francisco and the United States.",
-                            ImageURL = "https://static.toiimg.com/thumb/msid-44848107,width=1200,height=900/44848107.jpg",
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpgg",
                             IsRegistered = true,
                             Location = "San Francisco, California, USA",
                             Name = "Golden Gate Bridge",
@@ -636,7 +638,7 @@ namespace ArchitectureArchiveBE.Migrations
                         {
                             BuildingId = 48,
                             Description = "The Hollywood Bowl is an amphitheater in the Hollywood Hills neighborhood of Los Angeles, California. It is known for its distinctive band shell, set against the backdrop of the Hollywood Hills and the famous Hollywood Sign. The Bowl opened in 1922 and has hosted performances by many of the world's greatest artists and musicians. The venue has undergone numerous renovations to enhance its acoustics and visitor experience, including updates to seating, stage facilities, and infrastructure.",
-                            ImageURL = "https://archello.s3.eu-central-1.amazonaws.com/images/2016/09/14/01-Hollywood-Bowl2.1506082370.5043.jpg",
+                            ImageURL = "https://www.discoverlosangeles.com/sites/default/files/styles/hero/public/images/2019-01/Hollywood%20Bowl%20%28Photo%20courtesy%20of%20Los%20Angeles%20Philharmonic%2C%20by%20Adam%20Latham%29.jpg",
                             IsRegistered = true,
                             Location = "Los Angeles, California, USA",
                             Name = "Hollywood Bowl",
@@ -799,7 +801,7 @@ namespace ArchitectureArchiveBE.Migrations
                         new
                         {
                             TagId = 4,
-                            Name = "Government Building"
+                            Name = "Art Installation"
                         },
                         new
                         {
@@ -835,31 +837,6 @@ namespace ArchitectureArchiveBE.Migrations
                         {
                             TagId = 11,
                             Name = "Innovation"
-                        },
-                        new
-                        {
-                            TagId = 12,
-                            Name = "Closed to Public"
-                        },
-                        new
-                        {
-                            TagId = 13,
-                            Name = "Religious Site"
-                        },
-                        new
-                        {
-                            TagId = 14,
-                            Name = "Public Space"
-                        },
-                        new
-                        {
-                            TagId = 15,
-                            Name = "Skyscraper"
-                        },
-                        new
-                        {
-                            TagId = 16,
-                            Name = "Ancient Structure"
                         });
                 });
 

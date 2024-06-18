@@ -46,7 +46,7 @@ namespace ArchitectureArchiveBE.API
                         b.Location,
                         b.YearBuilt,
                         b.Description,
-                        IsRegistered = b.IsRegistered ? "Registered" : "Not Registered",
+                        IsRegisteredBool = b.IsRegistered,
                         b.UserId,
                         b.StyleId,
                         Style = b.Style.Name,
@@ -147,7 +147,7 @@ namespace ArchitectureArchiveBE.API
                 building.Location = buildingDto.Location ?? building.Location;
                 building.YearBuilt = buildingDto.YearBuilt ?? building.YearBuilt;
                 building.Description = buildingDto.Description ?? building.Description;
-                building.IsRegistered = buildingDto.IsRegistered != false ? buildingDto.IsRegistered : building.IsRegistered;
+                building.IsRegistered = buildingDto.IsRegistered;
                 building.ImageURL = buildingDto.ImageURL ?? building.ImageURL;
                 building.UserId = buildingDto.UserId;
 
