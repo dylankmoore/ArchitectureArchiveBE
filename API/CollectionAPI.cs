@@ -20,6 +20,7 @@ namespace ArchitectureArchiveBE.API
                         c.CollectionId,
                         c.Name,
                         c.ImageURL,
+                        c.Description,
                         Buildings = c.Buildings.Select(b => new
                         {
                             b.BuildingId,
@@ -47,6 +48,7 @@ namespace ArchitectureArchiveBE.API
                         c.CollectionId,
                         c.Name,
                         c.ImageURL,
+                        c.Description,
                         Buildings = c.Buildings.Select(b => new
                         {
                             b.BuildingId,
