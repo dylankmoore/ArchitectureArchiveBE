@@ -9,6 +9,8 @@ namespace ArchitectureArchiveBE.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Style> Styles { get; set; }
         public DbSet<Building> Buildings { get; set; }
+        public DbSet<Collection> Collections { get; set; }
+
 
         public ArchitectureArchiveBEDbContext(DbContextOptions<ArchitectureArchiveBEDbContext> options) : base(options)
         {

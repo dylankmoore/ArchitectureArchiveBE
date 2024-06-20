@@ -14,5 +14,7 @@
         public Style Style { get; set; }
         public User User { get; set; }
         public ICollection<Tag> Tags { get; set; }
+
+        public ICollection<Collection> Collections { get; set; }
     }
 }

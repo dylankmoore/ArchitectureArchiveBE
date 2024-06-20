@@ -3,6 +3,7 @@ using System;
 using ArchitectureArchiveBE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ArchitectureArchiveBE.Migrations
 {
     [DbContext(typeof(ArchitectureArchiveBEDbContext))]
-    partial class ArchitectureArchiveBEDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240619231638_CollectionEntity")]
+    partial class CollectionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -677,10 +679,6 @@ namespace ArchitectureArchiveBE.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CollectionId"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("ImageURL")
                         .IsRequired()
