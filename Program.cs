@@ -50,5 +50,6 @@ UserAPI.Map(app);
 BuildingAPI.Map(app);
 StyleAPI.Map(app);
 TagAPI.Map(app);
+CollectionAPI.Map(app);
 
 app.Run();
