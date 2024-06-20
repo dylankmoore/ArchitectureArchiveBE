@@ -16,10 +16,16 @@ Architecture Archive is your gateway to exploring the depths of our architectura
 - Edit building information such as name, image, location, description, its' registration status, etc.
 - Delete buildings
 
+## Stretch Features ✨
+- Create, read, update, & delete Collections
+- Add buildings to collections
+- One building can be in many collections, and one collection can have many buildings
+- Collections allow for greater organization & personalization
+
 ## Planning for Architecture Archive
 - [ERD](https://dbdiagram.io/d/ARCHIVE-663992099e85a46d5527466f)
 
-  ![AAERD](https://github.com/dylankmoore/ArchitectureArchiveBE/assets/134669892/d34923dc-5f6b-49cd-b983-f591d53e9be0)
+![AAERD2](https://github.com/dylankmoore/ArchitectureArchiveBE/assets/134669892/243a8da7-10fa-44ca-9c88-587ed2c20f74)
 
 - [Documentation](https://documenter.getpostman.com/view/32819688/2sA3QtdWJM)
 - [Wireframes](https://www.figma.com/design/957lYWWtl76ehs8c2vvPOO/Architecture-Archive?node-id=0-1&t=MFflAYoGfrfn982U-1)
